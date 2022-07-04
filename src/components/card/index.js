@@ -18,7 +18,12 @@ const PokemonCard = () => {
     useEffect(() => {
         async function fetchData() {
             const pokemonCard = await getPokemonCards(id)
-            setPokemonCard([pokemonCard])
+            setPokemonCard(pokemonCard)
+
+            pokemonCard.types.forEach(index => {
+                const pokemonType = index.type.name
+                console.log(pokemonType)
+            })
         }
         fetchData()
     }, [])
