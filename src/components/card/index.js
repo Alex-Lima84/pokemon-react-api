@@ -9,23 +9,20 @@ async function getPokemonCards(id) {
     return data
 }
 
-async function getPokemonAbility(abilityName) {
+async function getPokemonAbility(pokemonAbility) {
     
-    const response = await fetch(`https://pokeapi.co/api/v2/ability/${abilityName}`)
+    const response = await fetch(`https://pokeapi.co/api/v2/ability/${pokemonAbility}`)
     const data = await response.json()
-    console.log(data)
     return data
 }
 
-const abilityName = 'blaze'
-
-getPokemonAbility(abilityName)
-
 const PokemonCard = () => {
 
-    const [pokemonCard, setPokemonCard] = useState({})
+    const [ pokemonCard, setPokemonCard ] = useState({})
+    const [ pokemonAbilityText, setPokemonAbilitytext ] = useState([])
     const { id } = useParams()
 
+    const pokemonAbility = 'blaze'
 
     useEffect(() => {
         async function fetchData() {
@@ -35,6 +32,17 @@ const PokemonCard = () => {
         }
         fetchData()
     }, [])
+
+    useEffect(() => {
+        async function fetchData() {
+            const pokemonAbilityText = await getPokemonAbility(pokemonAbility)
+            setPokemonAbilitytext(pokemonAbilityText)
+            console.log(pokemonAbilityText)
+            console.log(pokemonAbilityText.flavor_text_entries[0].flavor_text)          
+        }
+        fetchData()
+    }, [])
+
 
     return (
         <section>
