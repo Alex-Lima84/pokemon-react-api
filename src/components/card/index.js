@@ -9,6 +9,18 @@ async function getPokemonCards(id) {
     return data
 }
 
+async function getPokemonAbility(abilityName) {
+    
+    const response = await fetch(`https://pokeapi.co/api/v2/ability/${abilityName}`)
+    const data = await response.json()
+    console.log(data)
+    return data
+}
+
+const abilityName = 'blaze'
+
+getPokemonAbility(abilityName)
+
 const PokemonCard = () => {
 
     const [pokemonCard, setPokemonCard] = useState({})
@@ -19,11 +31,7 @@ const PokemonCard = () => {
         async function fetchData() {
             const pokemonCard = await getPokemonCards(id)
             setPokemonCard(pokemonCard)
-
-            pokemonCard.types.forEach(index => {
-                const pokemonType = index.type.name
-                console.log(pokemonType)
-            })
+            console.log(pokemonCard)          
         }
         fetchData()
     }, [])
@@ -40,6 +48,19 @@ const PokemonCard = () => {
                 />
                 <p>{pokemonCard.name}</p>
             </div>
+
+            <div>
+                {pokemonCard.moves ? pokemonCard.moves.map((item, index) => <li key={index}>{item.move.name}</li>) : ''}
+            </div>
+
+            <div>
+            {pokemonCard.abilities ? pokemonCard.abilities.map((item, index) => <li key={index}>{item.ability.name}</li>) : ''}
+            </div>
+
+            <div>
+                {pokemonCard.types ? pokemonCard.types.map((item, index) => <li key={index}>{item.type.name}</li>) : ''}
+            </div>
+            
         </section>
     );
 }
