@@ -22,23 +22,25 @@ const PokemonCard = () => {
     const [ pokemonAbilityText, setPokemonAbilitytext ] = useState([])
     const { id } = useParams()
 
-    const pokemonAbility = 'blaze' //Deixei fixo somente para testar, porém não descobri uma forma de utilizar os valores que vem da variável pokemonCard.
-
     useEffect(() => {
         async function fetchData() {
             const pokemonCard = await getPokemonCards(id)
             setPokemonCard(pokemonCard)
-            console.log(pokemonCard)          
+            
+            if (pokemonCard) {
+                pokemonCard.abilities.forEach(item => {                   
+                    const pokemonAbility = item.ability.name
+                    console.log(pokemonAbility)
+                })
+            }
         }
         fetchData()
     }, [])
 
     useEffect(() => {
         async function fetchData() {
-            const pokemonAbilityText = await getPokemonAbility(pokemonAbility)
-            setPokemonAbilitytext(pokemonAbilityText)
-            console.log(pokemonAbilityText)
-            console.log(pokemonAbilityText.flavor_text_entries[0].flavor_text)          
+            const pokemonAbilityText = await getPokemonAbility()
+            setPokemonAbilitytext(pokemonAbilityText)    
         }
         fetchData()
     }, [])
