@@ -22,7 +22,7 @@ const PokemonCard = () => {
     const [ pokemonAbilityText, setPokemonAbilitytext ] = useState([])
     const { id } = useParams()
 
-    const pokemonAbility = 'blaze'
+    const pokemonAbility = 'blaze' //Deixei fixo somente para testar, porém não descobri uma forma de utilizar os valores que vem da variável pokemonCard.
 
     useEffect(() => {
         async function fetchData() {
