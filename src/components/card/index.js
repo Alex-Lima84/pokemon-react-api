@@ -23,6 +23,7 @@ const PokemonCard = () => {
     const { id } = useParams()
 
     useEffect(() => {
+
         async function fetchData() {
             const pokemonCard = await getPokemonCards(id)
             setPokemonCard(pokemonCard)
@@ -38,6 +39,7 @@ const PokemonCard = () => {
     }, [])
 
     useEffect(() => {
+        
         async function fetchData() {
             const pokemonAbilityText = await getPokemonAbility()
             setPokemonAbilitytext(pokemonAbilityText)    

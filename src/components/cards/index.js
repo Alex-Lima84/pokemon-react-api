@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
 import { useContext } from "react"
 import { ThemeContext } from "../../context/theme-toggler"
+import { PokemonTypesCard } from '../pokemon-types';
 
 const pokemonDisplayQuantity = 10
 
@@ -50,6 +51,8 @@ const PokemonCardsList = () => {
       <button className="get-more-button" onClick={getMorePokemons}>
         Get more pokemons
       </button>
+
+      <PokemonTypesCard />
     </section>
   );
 }
