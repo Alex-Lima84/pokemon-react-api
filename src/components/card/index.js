@@ -10,7 +10,7 @@ async function getPokemonCards(id) {
 }
 
 async function getPokemonAbility(pokemonAbility) {
-    
+
     const response = await fetch(`https://pokeapi.co/api/v2/ability/${pokemonAbility}`)
     const data = await response.json()
     return data
@@ -18,35 +18,32 @@ async function getPokemonAbility(pokemonAbility) {
 
 const PokemonCard = () => {
 
-    const [ pokemonCard, setPokemonCard ] = useState({})
-    const [ pokemonAbilityText, setPokemonAbilitytext ] = useState([])
+    const [pokemonCard, setPokemonCard] = useState({})
+    const [pokemonAbilityText, setPokemonAbilitytext] = useState([])
     const { id } = useParams()
 
     useEffect(() => {
 
         async function fetchData() {
-            const pokemonCard = await getPokemonCards(id)
-            setPokemonCard(pokemonCard)
             
-            if (pokemonCard) {
-                pokemonCard.abilities.forEach(item => {                   
-                    const pokemonAbility = item.ability.name
-                    console.log(pokemonAbility)
-                })
-            }
+            const pokemonCard = await getPokemonCards(id)
+
+            const abilitiesName = pokemonCard.abilities.map((item) => {
+                return item.ability.name
+            })
+
+            const data = abilitiesName.map(async (pokemonAbility) => {
+                return (
+                    await getPokemonAbility(pokemonAbility)
+                )
+            })
+            const pokemonAbilityText = await Promise.all(data)
+            setPokemonAbilitytext(pokemonAbilityText)
+            setPokemonCard(pokemonCard)
+            console.log(pokemonAbilityText)
         }
         fetchData()
     }, [])
-
-    useEffect(() => {
-        
-        async function fetchData() {
-            const pokemonAbilityText = await getPokemonAbility()
-            setPokemonAbilitytext(pokemonAbilityText)    
-        }
-        fetchData()
-    }, [])
-
 
     return (
         <section>
@@ -66,13 +63,15 @@ const PokemonCard = () => {
             </div>
 
             <div>
-            {pokemonCard.abilities ? pokemonCard.abilities.map((item, index) => <li key={index}>{item.ability.name}</li>) : ''}
+                <ul>
+                    {pokemonAbilityText ? pokemonAbilityText.map((item, index) => <li key={index}>{item.name}: {item.flavor_text_entries[0].flavor_text}</li>) : ''}
+                </ul>
             </div>
 
             <div>
                 {pokemonCard.types ? pokemonCard.types.map((item, index) => <li key={index}>{item.type.name}</li>) : ''}
             </div>
-            
+
         </section>
     );
 }

@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useEffect } from "react";
-import { useParams, Link } from 'react-router-dom'
 
 async function getPokemonTypes(type) {
 
@@ -9,7 +8,7 @@ async function getPokemonTypes(type) {
     return data
 }
 
-const type = 'fighting'
+const type = 'water'
 
 const PokemonTypesCard = () => {
 
@@ -21,7 +20,6 @@ const PokemonTypesCard = () => {
 
             const pokemonTypesCard = await getPokemonTypes(type)
             setPokemonTypesCard(pokemonTypesCard)
-            console.log(pokemonTypesCard.pokemon[0].pokemon)
         }
         fetchData()
     }, [])
