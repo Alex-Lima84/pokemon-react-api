@@ -6,6 +6,7 @@ async function getPokemonCards(id) {
 
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
     const data = await response.json()
+    console.log(data)
     return data
 }
 
@@ -27,7 +28,6 @@ const PokemonCard = () => {
         async function fetchData() {
             
             const pokemonCard = await getPokemonCards(id)
-
             const abilitiesName = pokemonCard.abilities.map((item) => {
                 return item.ability.name
             })
@@ -76,4 +76,4 @@ const PokemonCard = () => {
     );
 }
 
-export { PokemonCard }
+export { PokemonCard, getPokemonCards }
