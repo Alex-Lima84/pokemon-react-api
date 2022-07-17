@@ -1,12 +1,14 @@
 import React from 'react'
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
+import { useContext } from "react"
+import { ThemeContext } from "../../context/theme-toggler"
 
-async function getPokemonTypes(type) {
-
-    const response = await fetch(`https://pokeapi.co/api/v2/type/${type}`)
-    const data = await response.json()
-    return data
+async function getPokemonTypes(value) {
+  
+        const response = await fetch(`https://pokeapi.co/api/v2/type/${value}`)
+        const data = await response.json()
+        return data        
 }
 
 async function getPokemonInfo(pokemonId) {
@@ -16,45 +18,86 @@ async function getPokemonInfo(pokemonId) {
     return data
 }
 
-const type = 'water'
 
-const PokemonTypesCard = () => {
+export const PokemonTypesCard = () => {
 
     const [pokemonTypesCard, setPokemonTypesCard] = useState({})
-    const [pokemonId, setPokemonId] = useState({})
+    const [pokemonIdNumber, setPokemonIdNumber] = useState([])
+    const [value, setValue] = useState('electric')
+    const { theme } = useContext(ThemeContext)
 
+    const handleSelect = (value) => {
+        setValue(value)
+      }
+    
     useEffect(() => {
+
+        let shouldUpdate = true;
 
         async function fetchData() {
 
+            const pokemonTypesCard = await getPokemonTypes(value)
 
-            const pokemonTypesCard = await getPokemonTypes(type)
+            if (!shouldUpdate) return
+
             const pokemonIdText = pokemonTypesCard.pokemon.map((item) => {
                 return item.pokemon.name
             })
+
             const data = pokemonIdText.map(async (pokemonId) => {
-                return (
-                    await getPokemonInfo(pokemonId)
-                )
+                return getPokemonInfo(pokemonId)
+                
             })
             const pokemonIdNumber = await Promise.all(data)
-            setPokemonId(pokemonIdNumber)
+
+            if (!shouldUpdate) return
+
+            setPokemonIdNumber(pokemonIdNumber)
             setPokemonTypesCard(pokemonTypesCard)
-            console.log(pokemonTypesCard)
-            // console.log(pokemonId)
-            // console.log(pokemonId[0].id)
-            // console.log(pokemonId[0].name)
         }
         fetchData()
-    }, [])
+
+        return () => {
+            shouldUpdate = false
+        }
+
+    }, [value])
 
     return (
-        <section>
+        <section style={{ backgroundColor: theme.background, color: theme.fontColor }}>
+
+            <div>
+                <label htmlFor='pokemon-types'>Choose a pokemon by its type</label>
+                <form>
+                    <select onChange={(event) => 
+                    handleSelect(event.target.value)}
+                    value={value}>
+                         <option value='bug'>Bug</option>
+                         <option value='dark'>Dark</option>
+                         <option value='dragon'>Dragon</option>
+                         <option value='electric'>Electric</option>
+                         <option value='fairy'>Fairy</option>
+                         <option value='fighting'>Fighting</option>
+                         <option value='fire'>Fire</option>
+                         <option value='flying'>Flying</option>
+                         <option value='ghost'>Ghost</option>
+                         <option value='grass'>Grass</option>
+                         <option value='ground'>Ground</option>
+                         <option value='ice'>Ice</option>
+                        <option value='normal'>Normal</option>                    
+                        <option value='poison'>Poison</option>
+                        <option value='psychic'>Psychic</option>                     
+                        <option value='rock'>Rock</option>                       
+                        <option value='steel'>Steel</option>                       
+                        <option value='water'>Water</option> 
+                    </select>
+                </form>
+            </div>
 
             {<div>
                 <ul>
-                    {/* {!pokemonId ? '' : pokemonId.map((item, index) =>
-                        <div key={index}>
+                    {!pokemonIdNumber ? '' : pokemonIdNumber.map((item, index) =>
+                        <li key={index}>
                             <Link to={`/pokemon/${item.id}`}>
                                 <img
                                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${item.id}.png`}
@@ -62,18 +105,7 @@ const PokemonTypesCard = () => {
                                 />
                             </Link>
                             <p>{item.name}</p>
-                        </div>
-                    )} */}
-                    {!pokemonTypesCard.pokemon ? '' : pokemonTypesCard.pokemon.map((item, index) =>
-                        <div key={index}>
-                            <Link to={`/pokemon/${index}`}>
-                                <img
-                                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${item.id}.png`}
-                                    alt={pokemonId.name}
-                                />
-                            </Link>
-                            <p>{pokemonId.name}</p>
-                        </div>
+                        </li>
                     )}
                 </ul>
             </div>}
@@ -81,5 +113,3 @@ const PokemonTypesCard = () => {
         </section>
     );
 }
-
-export { PokemonTypesCard }

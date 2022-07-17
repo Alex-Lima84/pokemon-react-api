@@ -1,10 +1,9 @@
-
 import React from 'react'
 import { useState, useEffect } from "react";
+import styled from 'styled-components';
 import { Link } from 'react-router-dom'
 import { useContext } from "react"
 import { ThemeContext } from "../../context/theme-toggler"
-import { PokemonTypesCard } from '../pokemon-types';
 
 const pokemonDisplayQuantity = 10
 
@@ -15,10 +14,10 @@ async function getPokemonCards(offsetQuantity) {
   return data
 }
 
-const PokemonCardsList = () => {
+export const PokemonCardsList = () => {
 
-  const [ pokemonCards, setPokemonCards ] = useState([])
-  const [ offsetQuantity, setOffsetQuantity ] = useState(0)
+  const [pokemonCards, setPokemonCards] = useState([])
+  const [offsetQuantity, setOffsetQuantity] = useState(0)
   const { theme } = useContext(ThemeContext)
 
   const getMorePokemons = () => {
@@ -29,32 +28,78 @@ const PokemonCardsList = () => {
     async function fetchData() {
       const morePokemons = await getPokemonCards(offsetQuantity)
       setPokemonCards([...pokemonCards, ...morePokemons.results])
-      
     }
     fetchData()
   }, [offsetQuantity])
 
   return (
-    <section style={{backgroundColor: theme.background}}>
-      {pokemonCards.map(
-        (pokemon, index) =>
-          <div key={index}>
-            <Link to={`/pokemon/${index+1}`}>
-              <img
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}
-                alt={pokemon.name}
-              />
-            </Link>
-            <p>{pokemon.name}</p>
-          </div>
-      )}
-      <button className="get-more-button" onClick={getMorePokemons}>
-        Get more pokemons
-      </button>
 
-      <PokemonTypesCard />
-    </section>
+
+    <Section style={{ backgroundColor: theme.background, color: theme.fontColor }}>
+
+
+
+      <Div>
+        {pokemonCards.map(
+          (pokemon, index) =>
+            <Ul key={index}>
+              <Link to={`/pokemon/${index + 1}`}>
+                <Img
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}
+                  alt={pokemon.name}
+                />
+              </Link>
+              <P>{pokemon.name}</P>
+            </Ul>
+        )}
+      </Div>
+
+      <div>
+        <Button className="get-more-button" onClick={getMorePokemons}>
+          GET MORE POKEMONS!
+        </Button>
+      </div>
+
+    </Section>
+
   );
 }
 
-export { PokemonCardsList }
+const Section = styled.section`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: 0, 1rem;
+`
+
+const Div = styled.div`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 1.5rem;
+`
+
+const Ul = styled.ul`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: 0.8rem;
+      border: 0.2px solid #FFF;
+      border-radius: 0.5rem;
+`
+
+const Img = styled.img`
+     
+`
+
+const P = styled.p`
+      height: 1.5rem;
+      line-height: 1.5rem;
+`
+
+const Button = styled.button`
+  padding: 0.5rem;
+`

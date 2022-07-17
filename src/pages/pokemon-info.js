@@ -1,12 +1,10 @@
 import  React  from 'react'
 import { PokemonCard } from "../components/card";
 
-const PokemonPage = () => {
+export const PokemonPage = () => {
     return (
         <>
             <PokemonCard />
         </>
     )
 }
-
-export { PokemonPage }

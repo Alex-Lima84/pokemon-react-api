@@ -1,12 +1,12 @@
 import  React  from 'react'
 import { PokemonCardsList } from "../components/cards";
+import { PokemonTypesCard } from '../components/pokemon-types';
 
-const Home = () => {
+export const Home = () => {
     return (
         <>
             <PokemonCardsList />
+            <PokemonTypesCard />
         </>
     )
 }
-
-export { Home }

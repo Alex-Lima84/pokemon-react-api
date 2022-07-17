@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Home } from "./home";
 import { PokemonPage } from './pokemon-info';
 
-const AppRoutes = () => {
+export const AppRoutes = () => {
 
     return(
         <BrowserRouter>
@@ -15,5 +15,3 @@ const AppRoutes = () => {
         </BrowserRouter>
     )
 }
-
-export { AppRoutes }
