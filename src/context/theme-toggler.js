@@ -16,7 +16,12 @@ export const ThemeContext = createContext({})
 
 export const ThemeProvider = (props) => {
 
-    const [theme, setTheme] = useState(JSON.parse(localStorage.getItem("themes")))
+    const [theme, setTheme] = useState(() => {
+        if(!localStorage.themes) {
+            theme === themes.light
+        }
+        JSON.parse(localStorage.getItem("themes"))
+    })
      
     useEffect(() => {
        if(theme === themes.light) {
