@@ -16,28 +16,40 @@ export const ThemeContext = createContext({})
 
 export const ThemeProvider = (props) => {
 
-    const [theme, setTheme] = useState(() => {
-        if(!localStorage.themes) {
-            theme === themes.light
-        }
-        JSON.parse(localStorage.getItem("themes"))
-    })
-     
-    useEffect(() => {
-       if(theme === themes.light) {
-        localStorage.setItem('themes', JSON.stringify(themes.light))
-        setTheme(themes.light)        
-       }
+    const [theme, setTheme] = useState([])
 
-       if(theme === themes.dark) {
-        localStorage.setItem('themes', JSON.stringify(themes.dark))
-        setTheme(themes.dark)  
-       }
-    },[theme])
-    
+    useEffect(() => {
+
+        const localTheme = JSON.parse(localStorage.getItem("themes"))
+
+        if(!localTheme) {
+            setTheme(themes.light)
+        }
+
+        if(localTheme) {
+            setTheme(localTheme)
+        }
+
+        // if (theme === themes.light) {
+        //     localStorage.setItem('themes', JSON.stringify(themes.light))
+        //     setTheme(themes.light)
+        // }
+        
+        // if (theme === themes.dark) {
+        //     localStorage.setItem('themes', JSON.stringify(themes.dark))
+        //     setTheme(themes.dark)
+        // }
+        console.log(localTheme)
+
+    }, [])
+
     return (
         <ThemeContext.Provider value={{ theme, setTheme }}>
             {props.children}
         </ThemeContext.Provider>
     )
 }
+
+
+
+
