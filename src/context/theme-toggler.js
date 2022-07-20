@@ -2,12 +2,14 @@ import React, { createContext, useState, useEffect } from "react";
 
 export const themes = {
     light: {
-        background: "#41A9EC",
+        name: 'light mode',
+        background: '#41A9EC',
         fontColor: '#FFF'
     },
 
     dark: {
-        background: "#212121",
+        name: 'dark mode',
+        background: '#212121',
         fontColor: '#AAB0BC'
     }
 }
@@ -21,25 +23,23 @@ export const ThemeProvider = (props) => {
     useEffect(() => {
 
         const localTheme = JSON.parse(localStorage.getItem("themes"))
-
-        if(!localTheme) {
+       
+        if (!localTheme) {
+            localStorage.setItem('themes', JSON.stringify(themes.light))
             setTheme(themes.light)
         }
 
-        if(localTheme) {
-            setTheme(localTheme)
-        }
+        if (localTheme) {
+            if (localTheme.name === 'light mode') {
+                localStorage.setItem('themes', JSON.stringify(themes.light))
+                setTheme(themes.light)
+            }
 
-        // if (theme === themes.light) {
-        //     localStorage.setItem('themes', JSON.stringify(themes.light))
-        //     setTheme(themes.light)
-        // }
-        
-        // if (theme === themes.dark) {
-        //     localStorage.setItem('themes', JSON.stringify(themes.dark))
-        //     setTheme(themes.dark)
-        // }
-        console.log(localTheme)
+            if (localTheme.name === 'dark mode') {
+                localStorage.setItem('themes', JSON.stringify(themes.dark))
+                setTheme(themes.dark)
+            }
+        }
 
     }, [])
 

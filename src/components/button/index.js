@@ -7,14 +7,15 @@ export const Button = (props) => {
     const { theme } = useContext(ThemeContext)
    
     return(
-        <Butt0n {...props}
+        <StandardButton {...props}
                 style={{ backgroundColor: theme.background, color: theme.fontColor }}/>
     )
 }
 
 
-const Butt0n = styled.button`
+const StandardButton = styled.button`
     margin: 0.5rem;
     padding: 0.5rem;
     border-radius: 0.5rem;
+    border: 1px solid #FFF;
 `

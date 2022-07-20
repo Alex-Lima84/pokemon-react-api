@@ -71,6 +71,7 @@ const Section = styled.section`
       align-items: center;
       flex-direction: column;
       margin: 0, 1rem;
+      padding-bottom: 5rem;
 `
 
 const Div = styled.div`
@@ -87,8 +88,12 @@ const Ul = styled.ul`
       align-items: center;
       flex-direction: column;
       margin: 0.8rem;
-      border: 0.2px solid #FFF;
+      padding: 0.5rem;
+      border: 1px solid #FFF;
       border-radius: 0.5rem;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      height: 165px;
+      width: 132px;
 `
 
 const Img = styled.img`
@@ -98,8 +103,9 @@ const Img = styled.img`
 const P = styled.p`
       height: 1.5rem;
       line-height: 1.5rem;
+      text-align: center;
 `
 
 const Button = styled.button`
-  padding: 0.5rem;
+      padding: 0.5rem;
 `

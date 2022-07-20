@@ -1,5 +1,4 @@
 import React from 'react'
-import { ThemeTogglerButton } from './components/theme-toggler-button/theme-toggler-button';
 import { ThemeProvider } from './context/theme-toggler';
 import { AppRoutes } from "./pages/routes";
 import { createGlobalStyle } from 'styled-components'
@@ -9,7 +8,6 @@ function App() {
     <>
       <GlobalStyle />
       <ThemeProvider>
-        <ThemeTogglerButton />
         <AppRoutes />
       </ThemeProvider>
     </>
@@ -21,7 +19,21 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Edu SA Beginner', cursive;
   }
+
+  a{
+    text-decoration: none;
+    color: black;
+}
+
+  ul {
+    list-style: none;
+}
+
+  img {
+    max-width: 100%;
+}
 `
 
 export default App;
