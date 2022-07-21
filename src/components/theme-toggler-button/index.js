@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { ThemeContext, themes } from "../../context/theme-toggler"
+import { ThemeContext, themes } from "../../context/index.js"
 import { Button } from "../button"
 
 export const ThemeTogglerButton = () => {

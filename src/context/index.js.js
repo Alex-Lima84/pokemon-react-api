@@ -3,14 +3,16 @@ import React, { createContext, useState, useEffect } from "react";
 export const themes = {
     light: {
         name: 'light mode',
-        background: '#41A9EC',
-        fontColor: '#FFF'
+        background: '#00a6fb',
+        fontColor: '#003554',
+        fontColor1: '#0d3b66'
     },
 
     dark: {
         name: 'dark mode',
-        background: '#212121',
-        fontColor: '#AAB0BC'
+        background: '#03045e',
+        fontColor: '#caf0f8',
+        fontColor1: '#ade8f4'
     }
 }
 

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { ThemeContext } from "../../context/theme-toggler"
+import { ThemeContext } from "../../context/index.js"
 
 export const PageFooter = () => {
 
@@ -11,7 +11,7 @@ export const PageFooter = () => {
         <footer style={{ backgroundColor: theme.background, color: theme.fontColor }}>
             <Div>
                 <H2> Powered by:</H2>
-                <A style={{color: theme.fontColor}} href="https://pokeapi.co/" target='_blank'>POKÉAPI</A>
+                <A href="https://pokeapi.co/" target='_blank'>POKÉAPI</A>
             </Div>
         </footer>
 
@@ -31,5 +31,6 @@ const H2 = styled.h2`
 `
 const A = styled.a`
 font-size: 1.5rem; 
+color: #AC2294;
 `
 

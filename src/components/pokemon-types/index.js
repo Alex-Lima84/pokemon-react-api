@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
 import { useContext } from "react"
-import { ThemeContext } from "../../context/theme-toggler"
+import { ThemeContext } from "../../context/index.js"
 import styled from 'styled-components';
 
 async function getPokemonTypes(value) {
@@ -145,7 +145,7 @@ const Li = styled.li`
     flex-direction: column;
     margin: 0.8rem;
     padding: 0.5rem;
-    border: 1px solid #FFF;
+    border: 1px solid #0d3b66;
     border-radius: 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     height: 165px;

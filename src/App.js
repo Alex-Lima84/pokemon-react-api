@@ -1,5 +1,5 @@
 import React from 'react'
-import { ThemeProvider } from './context/theme-toggler';
+import { ThemeProvider } from './context/index.js';
 import { AppRoutes } from "./pages/routes";
 import { createGlobalStyle } from 'styled-components'
 

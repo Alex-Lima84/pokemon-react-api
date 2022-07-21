@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'
 import { useContext } from "react"
-import { ThemeContext } from "../../context/theme-toggler"
+import { ThemeContext } from "../../context/index.js"
 
 const pokemonDisplayQuantity = 10
 
@@ -89,7 +89,7 @@ const Ul = styled.ul`
       flex-direction: column;
       margin: 0.8rem;
       padding: 0.5rem;
-      border: 1px solid #FFF;
+      border: 1px solid #0d3b66;
       border-radius: 0.5rem;
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       height: 165px;
@@ -107,5 +107,12 @@ const P = styled.p`
 `
 
 const Button = styled.button`
+      cursor: pointer;
       padding: 0.5rem;
+      background-color: #ffd500;
+      color: #003f88;
+      outline: none;
+      border: none;
+      border-radius: 5px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 `

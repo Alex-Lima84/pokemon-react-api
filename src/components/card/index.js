@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from "react";
 import { useParams, Link } from 'react-router-dom'
 import { useContext } from "react"
-import { ThemeContext } from "../../context/theme-toggler"
+import { ThemeContext } from "../../context/index.js"
 
 async function getPokemonCards(id) {
 
@@ -51,7 +51,7 @@ export const PokemonCard = () => {
 
             <div>
                 <Link to='/'>
-                    <h2>Retornar</h2>
+                    <h2>⬅back</h2>
                 </Link>
                 <img
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ThemeTogglerButton } from "../theme-toggler-button";
-import { ThemeContext } from "../../context/theme-toggler"
+import { ThemeContext } from "../../context/index.js"
 import styled from "styled-components";
 
 export const PageHeader = () => {
@@ -9,7 +9,7 @@ export const PageHeader = () => {
 
     return (
 
-        <Header style={{ backgroundColor: theme.background, color: theme.fontColor }}>
+        <Header style={{ backgroundColor: theme.background, color: theme.fontColor1 }}>
             <Div>
                 <H1>WELCOME TO THE POKEMON PARADISE</H1>
             </Div>
