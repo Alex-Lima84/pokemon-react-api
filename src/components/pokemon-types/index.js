@@ -68,9 +68,9 @@ export const PokemonTypesCard = () => {
         <Section style={{ backgroundColor: theme.background, color: theme.fontColor }}>
 
             <Div>
-                <label htmlFor='pokemon-types'>Choose a pokemon by its type</label>
+                <Label htmlFor='pokemon-types'>Choose a pokemon by its type</Label>
                 <form>
-                    <select onChange={(event) =>
+                    <Select onChange={(event) =>
                         handleSelect(event.target.value)}
                         value={value}>
                         <option value='bug'>Bug</option>
@@ -91,7 +91,7 @@ export const PokemonTypesCard = () => {
                         <option value='rock'>Rock</option>
                         <option value='steel'>Steel</option>
                         <option value='water'>Water</option>
-                    </select>
+                    </Select>
                 </form>
             </Div>
 
@@ -100,8 +100,8 @@ export const PokemonTypesCard = () => {
                     {!pokemonIdNumber ? '' : pokemonIdNumber.map((item, index) =>
                         <Li key={index}>
                             <Link to={`/pokemon/${item.id}`}>
-                                <img
-                                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${item.id}.png`}
+                                <Img
+                                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${item.id}.png`}
                                     alt={item.name}
                                 />
                             </Link>
@@ -130,6 +130,23 @@ const Div = styled.div`
     flex-direction: column;
 `
 
+const Label = styled.label`
+    margin-bottom: 0.8rem;
+    font-size: 1.5rem;
+    text-align: center;
+
+    @media(max-width: 500px) {
+        font-size: 1.2rem;
+    }
+`
+
+const Select = styled.select`
+    text-align: center;
+    width: 150px;
+    border-radius: 0.2rem;
+    background-color: #F7F6E2;
+`
+
 const Ul = styled.ul`
     display: flex;
     justify-content: center;
@@ -148,8 +165,12 @@ const Li = styled.li`
     border: 1px solid #0d3b66;
     border-radius: 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    height: 165px;
-    width: 132px;
+    height: 200px;
+    width: 150px;
+`
+const Img = styled.img`
+    height: 100px;
+    width: 100px;
 `
 
 const P = styled.p`

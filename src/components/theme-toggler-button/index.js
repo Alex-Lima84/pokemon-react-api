@@ -7,8 +7,8 @@ export const ThemeTogglerButton = () => {
     const { theme, setTheme } = useContext(ThemeContext)
 
     function handleClick() {
+        
         const localTheme = JSON.parse(localStorage.getItem("themes"))
-        console.log(localTheme)
 
         setTheme(theme === themes.light ? themes.dark : themes.light)
 

@@ -37,15 +37,13 @@ export const PokemonCardsList = () => {
 
     <Section style={{ backgroundColor: theme.background, color: theme.fontColor }}>
 
-
-
       <Div>
         {pokemonCards.map(
           (pokemon, index) =>
             <Ul key={index}>
               <Link to={`/pokemon/${index + 1}`}>
                 <Img
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png`}
                   alt={pokemon.name}
                 />
               </Link>
@@ -92,12 +90,13 @@ const Ul = styled.ul`
       border: 1px solid #0d3b66;
       border-radius: 0.5rem;
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-      height: 165px;
-      width: 132px;
+      height: 200px;
+      width: 150px;
 `
 
 const Img = styled.img`
-     
+    height: 100px;
+    width: 100px;
 `
 
 const P = styled.p`
