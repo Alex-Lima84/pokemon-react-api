@@ -20,6 +20,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: 'Edu SA Beginner', cursive;
+    
+     @media(max-width: 500px) {
+        font-family: 'Raleway', sans-serif;;
+    }
   }
 
   a{
