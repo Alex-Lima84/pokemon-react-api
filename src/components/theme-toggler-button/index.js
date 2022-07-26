@@ -7,7 +7,7 @@ export const ThemeTogglerButton = () => {
     const { theme, setTheme } = useContext(ThemeContext)
 
     function handleClick() {
-        
+
         const localTheme = JSON.parse(localStorage.getItem("themes"))
 
         setTheme(theme === themes.light ? themes.dark : themes.light)
@@ -22,10 +22,12 @@ export const ThemeTogglerButton = () => {
 
     return (
 
-        <Button style={{ backgroundColor: theme.background,
-                         color: theme.fontColor }} 
-                onClick={() => handleClick()}>{
-                    (theme === themes.light ? 
+        <Button style={{
+            backgroundColor: theme.background,
+            color: theme.fontColor
+        }}
+            onClick={() => handleClick()}>{
+                (theme === themes.light ?
                     themes.dark.name : themes.light.name)}
         </Button>
 

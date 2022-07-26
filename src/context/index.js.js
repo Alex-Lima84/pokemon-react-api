@@ -25,7 +25,7 @@ export const ThemeProvider = (props) => {
     useEffect(() => {
 
         const localTheme = JSON.parse(localStorage.getItem("themes"))
-       
+
         if (!localTheme) {
             localStorage.setItem('themes', JSON.stringify(themes.light))
             setTheme(themes.light)
