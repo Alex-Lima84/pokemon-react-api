@@ -48,17 +48,17 @@ export const PokemonCard = () => {
         }
         fetchData()
     }, [])
-
+    
     return (
         <>
-            <Header style={{ backgroundColor: theme.background, color: theme.fontColor }}>
+            <Header theme={theme}>
                 <H1>POKEMON CARD</H1>
                 <ThemeDiv>
                     <ThemeTogglerButton />
                 </ThemeDiv>
             </Header>
 
-            <section style={{ backgroundColor: theme.background, color: theme.fontColor }}>
+            <Section theme={theme}>
 
                 <Link to='/'>
                     <H2>Home</H2>
@@ -93,7 +93,7 @@ export const PokemonCard = () => {
                 </div>
 
 
-            </section>
+            </Section>
         </>
     );
 }
@@ -103,6 +103,12 @@ const Header = styled.header`
     display:flex;
     flex-direction: column;
     flex-wrap: wrap;
+    background-color: ${props => props.theme.background};
+    color: ${props => props.theme.fontColor}
+`
+const Section = styled.section`
+    background-color: ${props => props.theme.background};
+    color: ${props => props.theme.fontColor}
 `
 
 const H1 = styled.h1`

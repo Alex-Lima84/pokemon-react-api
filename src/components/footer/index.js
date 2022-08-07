@@ -8,15 +8,20 @@ export const PageFooter = () => {
 
     return (
 
-        <footer style={{ backgroundColor: theme.background, color: theme.fontColor }}>
+        <Footer theme={theme}>
             <Div>
                 <H2> Powered by:</H2>
                 <A href="https://pokeapi.co/" target='_blank'>POKÉAPI</A>
             </Div>
-        </footer>
+        </Footer>
 
     )
 }
+
+const Footer = styled.footer`
+    background-color: ${props => props.theme.background};
+    color: ${props => props.theme.fontColor}
+`
 
 const Div = styled.div`
     display:flex;
