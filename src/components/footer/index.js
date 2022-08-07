@@ -30,7 +30,7 @@ const H2 = styled.h2`
     font-size: 1.2rem;
 `
 const A = styled.a`
-font-size: 1.5rem; 
-color: #c9184a;
+    font-size: 1.5rem; 
+    color: #c9184a;
 `
 

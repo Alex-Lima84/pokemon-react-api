@@ -16,27 +16,27 @@ function App() {
 
 const GlobalStyle = createGlobalStyle`
   * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Edu SA Beginner', cursive;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Edu SA Beginner', cursive;
     
-     @media(max-width: 500px) {
-        font-family: 'Raleway', sans-serif;;
+  @media(max-width: 500px) {
+    font-family: 'Raleway', sans-serif;;
     }
   }
 
   a{
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
   ul {
-    list-style: none;
+  list-style: none;
 }
 
   img {
-    max-width: 100%;
+  max-width: 100%;
 }
 `
 

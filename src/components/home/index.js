@@ -9,7 +9,7 @@ export const HomePageHeader = () => {
 
     return (
 
-        <Header style={{ backgroundColor: theme.background, color: theme.fontColor1 }}>
+        <Header theme={theme}>
             <Div>
                 <H1>WELCOME TO THE POKEMON PARADISE</H1>
             </Div>
@@ -26,6 +26,8 @@ const Header = styled.header`
     display:flex;
     flex-direction: column;
     flex-wrap: wrap;
+    background-color: ${props => props.theme.background};
+    color: ${props => props.theme.fontColor1}
 `
 
 const Div = styled.div`

@@ -10,8 +10,8 @@ export const AppRoutes = () => {
         <BrowserRouter>
             <ScrollToTop />
             <Routes>
-                <Route exact path="/" element={<Home />} />
-                <Route exact path="/pokemon/:id" element={<PokemonPage />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/pokemon/:id" element={<PokemonPage />} />
             </Routes>
         </BrowserRouter>
     )

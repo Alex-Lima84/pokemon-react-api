@@ -4,21 +4,10 @@ import { Link } from 'react-router-dom'
 import { useContext } from "react"
 import { ThemeContext } from "../../context/index.js"
 import styled from 'styled-components';
+import { getPokemonInfo, getPokemonTypes } from './services.js';
 
-async function getPokemonTypes(value) {
-
-    const response = await fetch(`https://pokeapi.co/api/v2/type/${value}`)
-    const data = await response.json()
-    return data
-}
-
-async function getPokemonInfo(pokemonId) {
-
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
-    const data = await response.json()
-    return data
-}
-
+getPokemonTypes()
+getPokemonInfo()
 
 export const PokemonTypesCard = () => {
 
@@ -37,11 +26,11 @@ export const PokemonTypesCard = () => {
 
         async function fetchData() {
 
-            const pokemonTypesCard = await getPokemonTypes(value)
+            const cardType = await getPokemonTypes(value)
 
             if (!shouldUpdate) return
 
-            const pokemonIdText = pokemonTypesCard.pokemon.map((item) => {
+            const pokemonIdText = cardType.pokemon.map((item) => {
                 return item.pokemon.name
             })
 
@@ -65,7 +54,7 @@ export const PokemonTypesCard = () => {
     }, [value])
 
     return (
-        <Section style={{ backgroundColor: theme.background, color: theme.fontColor }}>
+        <Section theme={theme}>
 
             <Div>
                 <Label htmlFor='pokemon-types'>Choose a pokemon by its type</Label>
@@ -121,6 +110,8 @@ const Section = styled.section`
     align-items: center;
     flex-direction: column;
     margin: 0, 1rem;
+    background-color: ${props => props.theme.background};
+    color: ${props => props.theme.fontColor}
 `
 
 const Div = styled.div`
